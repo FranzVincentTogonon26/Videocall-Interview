@@ -1,9 +1,24 @@
-import React from 'react'
+import React from 'react';
+import {
+   SignedIn,
+   SignedOut,
+   SignInButton,
+   SignOutButton,
+   SignUpButton,
+   UserButton,
+} from '@clerk/clerk-react';
 
 const App = () => {
-  return (
-    <div>App</div>
-  )
-}
+   return (
+      <header>
+         <SignedOut>
+            <SignInButton mode="modal" />
+            <SignUpButton />
+         </SignedOut>
 
-export default App
+         <UserButton />
+      </header>
+   );
+};
+
+export default App;
