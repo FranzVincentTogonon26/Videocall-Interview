@@ -1,16 +1,20 @@
 import express from 'express';
-import dotenv from 'dotenv';
+import cors from 'cors';
 import serve from 'inngest/express';
+
 import { clerkMiddleware } from '@clerk/express';
 import { functions, inngest } from './config/inngest.js';
+
+import { ENV } from './config/env.js';
 import connectDB from './config/db.js';
 
-dotenv.config({ quiet: true });
-
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = ENV.PORT || 8000;
 
+// Middleware
 app.use(express.json());
+// Credentials: true meaning => server allows a broswer to include cookies on request
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 app.use(clerkMiddleware());
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
