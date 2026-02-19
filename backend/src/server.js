@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import serve from 'inngest/express';
 
+import { serve } from 'inngest/express';
 import { clerkMiddleware } from '@clerk/express';
 import { functions, inngest } from './config/inngest.js';
 
