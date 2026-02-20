@@ -16,13 +16,10 @@ app.use(express.json());
 // Credentials: true meaning => server allows a broswer to include cookies on request
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 app.use(clerkMiddleware());
-app.use(express.urlencoded({ limit: '10mb', extended: true }));
+app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
 // Routes
 app.use('/api/inngest', serve({ client: inngest, functions }));
-// app.use('/protected', requireAuth(), async ( req, res ) => {
-//    const { userId } = getAuth(req);
-// })
 
 connectDB().then(() => {
    app.listen(PORT, () => {
